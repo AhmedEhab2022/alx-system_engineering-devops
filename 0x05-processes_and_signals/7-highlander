@@ -7,6 +7,6 @@
 while :
 do
 	echo "To infinity and beyond"
-	trap "I am invincible!!!" TERM
+	trap "I am invincible!!!" SIGTERM
 	sleep 2
 done
