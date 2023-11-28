@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Configure your Nginx server so that /redirect_me is redirecting to another page
+
+apt-get update -y
+apt install -y nginx
+ufw allow 'Nginx HTTP'
+
+echo "Hello World!" > /var/www/html/index.html
+
+echo "server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	
+	root /var/www/html
+	index index.html index.htm index.nginx-debian.html
+	location /redirect_me {
+		return 301
+	}
+}" > /etc/nginx/sites-available/default
+
+service nginx restart
