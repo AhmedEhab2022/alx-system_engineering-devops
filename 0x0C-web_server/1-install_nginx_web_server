@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Bash script that configures a new Ubuntu machine to respect requirements
 
-apt update -y
-apt install -y nginx
+apt-get update -y
+apt-get install -y nginx
 
 ufw allow 'Nginx HTTP'
 
