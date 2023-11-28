@@ -5,14 +5,14 @@ apt-get update -y
 apt install -y nginx
 ufw allow 'Nginx HTTP'
 
-echo "Hello World!" > /var/www/html/index.html
+echo "Hello World!" > /etc/nginx/html/index.html
 
 echo "server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 	
-	root /var/www/html
-	index index.html index.htm index.nginx-debian.html
+	root  /var/www/html;
+	index index.html index.htm;
 	location /redirect_me {
 		return 301
 	}
