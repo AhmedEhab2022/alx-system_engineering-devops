@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # Bash script that configures a new Ubuntu machine to respect requirements
 
-apt update
+apt update -y
 apt install -y nginx
+
+ufw allow 'Nginx HTTP'
 
 echo "Hello World!" > /var/www/html/index.html
 service nginx restart
