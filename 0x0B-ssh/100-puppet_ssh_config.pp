@@ -2,7 +2,7 @@
 
 file_line { 'Refuse to authenticate using a password':
   ensure  => present,
-  path    => '~/.ssh/config',
+  path    => '/etc/ssh/ssh_config',
   line    => 'PasswordAuthentication no',
 }
 
