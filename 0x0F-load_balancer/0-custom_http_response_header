@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# configures a brand new Ubuntu machine to the requirements asked in this task
+
+apt-get update -y
+apt-get install -y nginx
+ufw allow 'Nginx HTTP'
+
+mkdir /etc/nginx/html
+touch /etc/nginx/html/index.html
+touch /etc/nginx/html/404code.html
+
+echo "Hello World!" > /etc/nginx/html/index.html
+echo "Ceci n'est pas une page" > /etc/nginx/html/404code.html
+
+echo "server {
+	listen 80;
+	listen [::]:80 default_server;
+	root   /var/www/html;
+	index  index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	add_header X-Served-By $hostname;
+
+	location /redirect_me {
+		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+	}
+
+	error_page 404 /404code.html;
+	location /404 {
+		root /etc/rginx/html;
+		internal;
+	}
+}" > /etc/nginx/sites-available/default
+
+service nginx restart
