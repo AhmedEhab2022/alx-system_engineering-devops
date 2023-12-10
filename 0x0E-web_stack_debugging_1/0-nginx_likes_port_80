@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Fix port configration of Ubuntu container's Nginx installation
 
-rm /etc/nginx/sites_enabled/default
-ln -s /etc/sites_available/default /etc/nginx/sites_enabled/default
+nginx_conf="/etc/nginx/sites-available/default"
+sed -i 's/listen [0-9]\+/listen 80/' "$nginx_conf"
 service nginx restart
