@@ -28,8 +28,8 @@ frontend web
 
 backend webservers
     balance roundrobin
-    server 290943-web-01:80 check
-    server 290943-web-02:80 check
+    server web-01 35.174.185.16:80 check
+    server web-02 34.229.72.168:80 check
 EOF"
 
 sudo systemctl restart haproxy
