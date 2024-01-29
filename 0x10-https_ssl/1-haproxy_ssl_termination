@@ -1,0 +1,33 @@
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    chroot /var/lib/haproxy
+    stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
+    stats timeout 30s
+    user haproxy
+    group haproxy
+    daemon
+
+    ca-base /etc/ssl/certs
+    crt-base /etc/ssl/private
+
+defaults
+    mode http
+    timeout client 10s
+    timeout connect 5s
+    timeout server 10s
+    timeout http-request 10s
+
+frontend web
+    bind *:80
+    default_backend webservers
+
+frontend web-https
+    bind *:443 ssl crt /etc/haproxy/certs/www.ahmedehabdom.tech.pem
+    http-request set-header X-Forwarded-Proto https
+    default_backend webservers
+
+backend webservers
+    balance roundrobin
+    server 290943-web-01 35.174.185.16:80 check
+    server 290943-web-02 34.229.72.168:80 check
