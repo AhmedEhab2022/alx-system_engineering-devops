@@ -21,7 +21,7 @@ if __name__ == '__main__':
         username = user.get('username')
         id = user.get('id')
         for t in all_todos:
-            if employee_id is not t.get('userId'):
+            if employee_id != t.get('userId'):
                 employee_id = t.get('userId')
                 data[employee_id] = []
             employee_dict = {
