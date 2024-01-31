@@ -21,7 +21,7 @@ if __name__ == '__main__':
         csv_writer = csv.writer(file, quoting=csv.QUOTE_ALL)
 
         [csv_writer.writerow([employee_id,
-                             user.get('name'),
+                             user.get('username'),
                              t.get('completed'),
                              t.get('title')
                              ]) for t in todos]
