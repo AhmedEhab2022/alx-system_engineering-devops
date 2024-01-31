@@ -18,15 +18,14 @@ if __name__ == '__main__':
     for user in users:
         username = user.get('username')
         id = user.get('id')
-        todos = requests.get(f"{url}/todos/?userId={id}").json()
-        print(todos)
+        todos = requests.get(f"{url}/todos?userId={id}").json()
         data[id] = []
         for t in todos:
-            employee_dict = {'username': username,
-                             'task': t.get('title'),
-                             'completed': t.get('completed')}
+            employee_dict = {'task': t.get('title'),
+                             'completed': t.get('completed'),
+                             'username': username}
 
             data[id].append(employee_dict)
 
-    with open(filename, mode='w', newline='') as json_file:
-        json.dump(data, json_file)
+    with open(filename, mode='w') as json_file:
+        json.dump(data, json_file, indent=4)
