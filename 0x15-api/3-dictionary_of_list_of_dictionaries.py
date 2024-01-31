@@ -15,22 +15,22 @@ if __name__ == '__main__':
 
     filename = "todo_all_employees.json"
     data = {}
-    employee_id = -1
 
     for user in users:
         username = user.get('username')
         id = user.get('id')
-        for t in all_todos:
-            if employee_id != t.get('userId'):
-                employee_id = t.get('userId')
+        for tod in all_todos:
+            employee_id = tod.get('userId')
+            todos = requests.get('{url}todos/?userId={employee_id}').json()
+            for t in todos:
                 data[employee_id] = []
-            employee_dict = {
-                                'username': username,
-                                'task': t.get('title'),
-                                'completed': t.get('completed'),
-                            }
+                employee_dict = {
+                                    'username': username,
+                                    'task': t.get('title'),
+                                    'completed': t.get('completed'),
+                                }
 
-            data[employee_id].append(employee_dict)
+                data[employee_id].append(employee_dict)
 
     with open(filename, mode='w', newline='') as json_file:
         json.dump(data, json_file)
