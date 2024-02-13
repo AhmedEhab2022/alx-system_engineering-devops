@@ -12,7 +12,7 @@ def number_of_subscribers(subreddit):
     """
     subscribers = 0
     if subreddit:
-        url = 'https://www.reddit.com/r/{}/about.json'.format(subteddit)
+        url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
         res = requests.get(url, allow_redirects=False)
         if res.status_code == 200:
             subreddit_about = res.json()
