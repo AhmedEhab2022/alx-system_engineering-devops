@@ -15,7 +15,10 @@ def recurse(subreddit, hot_list=[], i=0, posts=[]):
         if subreddit is None:
             return None
         url = f'https://www.reddit.com/r/{subreddit}/hot.json'
-        res = requests.get(url, allow_redirects=False)
+        headers = {
+        'User-agent': 'ubuntu 20.04'
+        }
+        res = requests.get(url, headers=headers, allow_redirects=False)
         if res.status_code != 200:
             return None
         posts = res.json().get('data').get('children')
