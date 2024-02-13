@@ -14,7 +14,7 @@ def number_of_subscribers(subreddit):
     if subreddit:
         url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
         headers = { 
-            'User-Agent': 'linux:com.api.advanced:v4.5.6 (by /u/Ahmed)'
+            'User-Agent': 'linux:com.api.advanced:v1.2.3 (by /u/Ahmed)'
         }
         res = requests.get(url, headers=headers, allow_redirects=False)
         if res.status_code == 200:
