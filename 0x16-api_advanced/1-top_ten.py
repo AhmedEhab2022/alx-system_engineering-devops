@@ -10,7 +10,11 @@ def top_ten(subreddit):
      listed for a given subreddit.
      """
     url = f'https://www.reddit.com/r/{subreddit}/hot.json'
-    res = requests.get(url, allow_redirects=False)
+    headers = {
+        'User-agent': 'ubuntu 20.04'
+    }
+    res = requests.get(url, headers=headers, allow_redirects=False)
+    print(res.status_code)
     if res.status_code == 200:
         subreddit_posts = res.json().get('data').get('children')
         for i in range(10):
