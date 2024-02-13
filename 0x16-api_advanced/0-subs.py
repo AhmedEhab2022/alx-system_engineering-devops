@@ -13,7 +13,8 @@ def number_of_subscribers(subreddit):
     subscribers = 0
     if subreddit:
         url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-        res = requests.get(url, allow_redirects=False)
+        headers = 'User-Agent': 'linux:com.api.advanced:v4.5.6 (by /u/Ahmed)'
+        res = requests.get(url, headers=headers allow_redirects=False)
         if res.status_code == 200:
             subreddit_about = res.json()
             subscribers = subreddit_about.get('data').get('subscribers')
