@@ -42,7 +42,10 @@ server {
     }
 
     location / {
-        proxy_pass http://localhost:5003/web_dynamic/2-hbnb.py;
-        try_files $uri $uri/ =404;
+        proxy_pass http://localhost:5003;
+    }
+
+    location /web_dynamic/static/scripts/2-hbnb.js {
+        alias ~/AirBnB_clone_v4/web_dynamic/static/scripts/2-hbnb.js;
     }
 }
